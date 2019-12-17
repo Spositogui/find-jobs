@@ -2,7 +2,7 @@
 	<div class="navbar-start">
 		<%= link_to 'Home', root_path, class: 'navbar-item' %>
 		<% if head_hunter_signed_in? %>
-			<%= link_to 'Minhas vagas', '#', class: 'navbar-item' %>
+			<%= link_to I18n.t('vacancies'), '#', class: 'navbar-item' %>
 		<% end %>
 	</div>
 	
@@ -12,12 +12,18 @@
 				<%= current_head_hunter.email %>
 			</div>
 			<%= link_to I18n.t('log_out'), destroy_head_hunter_session_path, method: :delete, class: 'navbar-item'  %>
+		<% elsif candidate_signed_in?%>
+			<div class="navbar-item">
+				<%= current_candidate.email %>
+			</div>
+			<%= link_to I18n.t('log_out'), destroy_candidate_session_path, method: :delete, class: 'navbar-item'  %>
 		<% else %>
 			<%= link_to I18n.t('log_in'), new_head_hunter_session_path,class: 'navbar-item' %>
 	    	<div class="navbar-item has-dropdown is-hoverable">
 	        	<%= link_to I18n.t('sign_up_home_button'), '#', class: 'navbar-link' %>
 	        	<div class="navbar-dropdown">
 	          		<%= link_to I18n.t('sign_up_as_head_hunter'), new_head_hunter_registration_path, class: 'navbar-item'%>
+	          		<%= link_to I18n.t('sign_up_as_candidate'), new_candidate_registration_path, class: 'navbar-item' %>
 	          	</div>		
 	        </div>
 		<% end %>
