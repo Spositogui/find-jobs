@@ -1,0 +1,26 @@
+pt-BR:
+  activerecord:
+    attributes:
+      job:
+        title: Titulo da vaga
+        description: Descrição da vaga
+        skills_description: Habilidades desejadas
+        salary: Salário
+        experience_level_id: Nível de experiência
+        hiring_type_id: Tipo de contratação
+        address:  Endereço
+        home_office: Remoto
+        registration_end_date: Data de expiração da vaga
+  job:
+    title: Titulo da vaga
+    register_new_job: Registrar nova vaga
+    register: Cadastrar
+    back: Voltar
+    job_description: Descrição da vaga
+    desired_skills: Habilidades desejadas
+    salary: Salário
+    experience_level: Nível de experiência
+    hiring_type: Tipo de contratação
+    address: Endereço
+    home_office: Remoto
+    registration_end_date: Data de expiração da vaga

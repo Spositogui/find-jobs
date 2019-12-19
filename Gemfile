@@ -27,6 +27,7 @@ gem 'bootsnap', '>= 1.1.0', require: false
 
 #added
 gem 'devise'
+gem 'cancancan'
 gem 'bulma-rails', '~> 0.8.0'
 
 group :development, :test do

@@ -1,0 +1,11 @@
+<div class='errors-messages'>
+  <% if obj.errors.any? %>
+    <%= I18n.t('activerecord.errors.messages.default_message') %>
+    <ul>
+      <% obj.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+    </ul>
+  <% end %>
+</div>
+

@@ -1,0 +1,37 @@
+<h3>Nova vaga</h3>
+
+<%= render 'shared/errors', obj: @job %>
+
+<%= form_with model: @job, local: true do |f| %>
+	<p><%= f.label :title %></p>
+	<p><%= f.text_field :title %></p>
+	<p><%= f.label :description %></p>
+	<p><%= f.text_area :description %></p>
+	<p><%= f.label :skills_description %></p>
+	<p><%= f.text_area :skills_description %></p>
+	<p><%= f.label :salary %></p>
+	<p><%= f.number_field :salary %></p>
+	<p><%= f.label :experience_level_id %></p>
+	<p>
+		<%= f.collection_select(:experience_level_id, 
+													 @experience_levels,
+													 :id, :name) %>	
+	</p>
+	<p><%= f.label :hiring_type_id %></p>
+	<p>
+		<%= f.collection_select(:hiring_type_id, 
+														@hiring_types, 
+														:id, :name) %>		
+	</p>
+	<p><%= f.label :address %></p>
+	<p><%= f.text_field :address %></p>
+	<p><%= f.label :home_office %></p>
+	<p>
+		<%= select_tag :home_office, options_for_select(Job.home_offices.map {| k, v | [k.humanize, k]}) %>
+	</p>
+	<p><%= f.label :registration_end_date %></p>
+	<p><%= f.date_field :registration_end_date %></p>
+	<p><%= f.submit I18n.t('register') %></p>
+<% end %>	
+
+<%= link_to I18n.t('back'), jobs_path %>

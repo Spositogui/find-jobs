@@ -1,0 +1,22 @@
+<h3><%= @job.title %></h3>
+
+<dl>
+  <dt><%= "#{I18n.t('job.job_description')}:" %></dt>
+  <dd><%= @job.description %></dd>
+  <dt><%= "#{I18n.t('job.desired_skills')}:" %></dt>
+  <dd><%= @job.skills_description %></dd>
+  <dt><%= "#{I18n.t('job.salary')}:" %></dt>
+  <dd><%= number_to_currency @job.salary %></dd>
+  <dt><%= "#{I18n.t('job.experience_level')}:" %></dt>
+  <dd><%= @job.experience_level.name %></dd>
+  <dt><%= "#{I18n.t('job.hiring_type')}:" %></dt>
+  <dd><%= @job.hiring_type.name %></dd>
+  <dt><%= "#{I18n.t('job.address')}:" %></dt>
+  <dd><%= @job.address %></dd>
+  <dt><%= "#{I18n.t('job.home_office')}:" %></dt>
+  <dd><%= @job.home_office.humanize %></dd>
+  <dt><%= "#{I18n.t('job.registration_end_date')}:" %></dt>
+  <dd><%= @job.registration_end_date.strftime('%d/%m/%Y') %></dd>
+</dl>
+
+<%= link_to I18n.t(:back), jobs_path %>
