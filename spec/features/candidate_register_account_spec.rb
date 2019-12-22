@@ -4,19 +4,20 @@ feature 'Visitor signs up to apply for vacancies' do
 	scenario 'successfully' do 
 		visit root_path
 		click_on 'Cadastrar-se'
-		click_on 'Como candidato'
+		within('div#sign-up') do
+			click_on 'Como candidato'
+		end
 
 		fill_in 'Email', with: 'joao@gmail.com'
 		fill_in 'Senha', with: '123456'
 		fill_in 'Confirme sua senha', with: '123456'
 		click_on 'Inscrever-se'
 
-		expect(current_path).to eq root_path
+		expect(current_path).to eq(new_candidate_profile_path)
+		expect(page).to have_content('Criando perfil')
 		expect(page).to have_content('Bem vindo! Você realizou seu registro com sucesso.')
 		expect(page).to have_content('joao@gmail.com')
 		expect(page).to have_content('Sair')
-		expect(page).not_to have_content('Cadastrar-se')
-		expect(page).not_to have_content('Vagas cadastradas')
 	end
 
 	scenario 'and all fields muts be fill in' do

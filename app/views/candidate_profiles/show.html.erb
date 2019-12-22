@@ -1,0 +1,18 @@
+<div class="profile-img">
+  <%= image_tag @candidate_profile.avatar if @candidate_profile.avatar.attached? %>
+<div>
+
+<dl>
+  <dt><%= "#{I18n.t('candidate_profile.name')}:" %></dt>
+  <dd><%= @candidate_profile.name %></dd>
+  <dt><%= "#{I18n.t('candidate_profile.nickname')}:" %></dt>
+  <dd><%= @candidate_profile.nickname %></dd>
+  <dt><%= "#{I18n.t('candidate_profile.date_of_birth')}:" %></dt>
+  <dd><%= @candidate_profile.date_of_birth.strftime('%d/%m/%Y') %></dd>
+  <dt><%= "#{I18n.t('candidate_profile.formation')}:" %></dt>
+  <dd><%= @candidate_profile.candidate_formation.name %></dd>
+   <dt><%= "#{I18n.t('candidate_profile.description')}:" %></dt>
+  <dd><%= @candidate_profile.description %></dd>
+  <dt><%= "#{I18n.t('candidate_profile.experience')}:" %></dt>
+  <dd><%= @candidate_profile.experience %></dd>
+</dl>

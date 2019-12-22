@@ -4,8 +4,10 @@ feature 'Headhunter register a new account' do
   scenario 'successfully' do
 	visit root_path
 	click_on 'Cadastrar-se'
-	click_on 'Como empresa'
-	
+	within('div#sign-up') do
+		click_on 'Como empresa'
+	end
+
 	fill_in 'Email', with: 'julio@campus.com'
 	fill_in 'Senha', with: '123456'
 	fill_in 'Confirme sua senha', with: '123456'

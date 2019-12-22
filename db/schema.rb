@@ -10,7 +10,48 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_12_17_211908) do
+ActiveRecord::Schema.define(version: 2019_12_20_165240) do
+
+  create_table "active_storage_attachments", force: :cascade do |t|
+    t.string "name", null: false
+    t.string "record_type", null: false
+    t.integer "record_id", null: false
+    t.integer "blob_id", null: false
+    t.datetime "created_at", null: false
+    t.index ["blob_id"], name: "index_active_storage_attachments_on_blob_id"
+    t.index ["record_type", "record_id", "name", "blob_id"], name: "index_active_storage_attachments_uniqueness", unique: true
+  end
+
+  create_table "active_storage_blobs", force: :cascade do |t|
+    t.string "key", null: false
+    t.string "filename", null: false
+    t.string "content_type"
+    t.text "metadata"
+    t.bigint "byte_size", null: false
+    t.string "checksum", null: false
+    t.datetime "created_at", null: false
+    t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
+  end
+
+  create_table "candidate_formations", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "candidate_profiles", force: :cascade do |t|
+    t.string "name"
+    t.string "nickname"
+    t.date "date_of_birth"
+    t.integer "candidate_formation_id"
+    t.text "description"
+    t.text "experience"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "candidate_id"
+    t.index ["candidate_formation_id"], name: "index_candidate_profiles_on_candidate_formation_id"
+    t.index ["candidate_id"], name: "index_candidate_profiles_on_candidate_id"
+  end
 
   create_table "candidates", force: :cascade do |t|
     t.string "email", default: "", null: false

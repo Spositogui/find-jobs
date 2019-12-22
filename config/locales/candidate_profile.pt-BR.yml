@@ -1,0 +1,23 @@
+pt-BR:
+  activerecord:
+    attributes:
+      candidate_profile:
+        name: Nome completo
+        nickname: Nome social
+        date_of_birth: Data de nascimento
+        candidate_formation: Formação
+        candidate_formation_id: Formação
+        description: Descrição
+        experience: Experiência
+        avatar: Foto
+  candidate_profile:
+    name: Nome
+    nickname: Nome social
+    date_of_birth: Data de nascimento
+    formation: Formação
+    description: Descrição
+    experience: Experiência
+    profiling: Criando perfil
+    register_profile: Cadastrar perfil
+    message:
+      profile_success: Perfil criado com sucesso.

@@ -16,15 +16,26 @@
 													method: :delete, class: 'navbar-item' %>
 
 			<% elsif candidate_signed_in? %>
-				<div class="navbar-item">
-					<%= current_candidate.email %>
-				</div>
-				<%= link_to I18n.t('log_out'), destroy_candidate_session_path,
-													method: :delete, class: 'navbar-item'%>
-			<% else %>
 				<div class="navbar-item has-dropdown is-hoverable">
-					<%= link_to I18n.t('log_in'), '#', 
-														class: 'navbar-link' %>
+					<%= link_to current_candidate.email, '#', class: 'navbar-link' %>
+
+					<div class="navbar-dropdown">
+						<% if current_candidate.candidate_profile.nil? %>
+							<%= link_to I18n.t('profile'), 
+														new_candidate_profile_path, class: 'navbar-item' %>
+						<% elsif current_candidate.candidate_profile.valid? %>
+							<%= link_to I18n.t('profile'), 
+														candidate_profile_path(current_candidate.candidate_profile), 
+														class: 'navbar-item' %>
+						<% end %>
+						<%= link_to I18n.t('log_out'), destroy_candidate_session_path,
+													method: :delete, class: 'navbar-item'%>
+					</div>
+				</div>
+
+			<% else %>
+				<div id="log-in" class="navbar-item has-dropdown is-hoverable">
+					<%= link_to I18n.t('log_in'), '#', class: 'navbar-link' %>
 						
 					<div class="navbar-dropdown">
 						<%= link_to  I18n.t('sign_up_as_candidate'), 
@@ -36,7 +47,7 @@
 					</div>
 				</div>
 
-				<div class="navbar-item has-dropdown is-hoverable">
+				<div id="sign-up" class="navbar-item has-dropdown is-hoverable">
 					<%= link_to I18n.t('sign_up_home_button'), '#', 
 														class: 'navbar-link' %>
 

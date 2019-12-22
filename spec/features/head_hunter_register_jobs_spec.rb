@@ -8,21 +8,21 @@ feature 'Head hunter register new jobs' do
 
 		login_as(head_hunter, scope: :head_hunter)
 		visit root_path
-		click_on I18n.t('vacancies')
-		click_on I18n.t('register_new_job')
+		click_on 'Vagas cadastradas'
+		click_on 'Registrar nova vaga'
 
-		fill_in I18n.t('job.title'), with: 'Dev Ruby'
-		fill_in I18n.t('job.job_description'), 
+		fill_in 'Titulo da vaga', with: 'Dev Ruby'
+		fill_in 'Descrição da vaga', 
 									with: 'Dolore dolor qui incididunt ea tempor in adipisicing in.'
-		fill_in I18n.t('job.desired_skills'), 
+		fill_in 'Habilidades desejadas', 
 									with: 'Et ut aliquip enim veniam commodo aliquip commodo ad amet in elit culpa est.'
-		fill_in I18n.t('job.salary'), with: '2500.00'
-		select 'Júnior', from: I18n.t('job.experience_level')
-		select 'PJ', from: I18n.t('job.hiring_type')
-		fill_in I18n.t('job.address'), with: 'Av. Paulista, nº 2000'
+		fill_in 'Salário', with: '2500.00'
+		select 'Júnior', from: 'Nível de experiência'
+		select 'PJ', from: 'Tipo de contratação'
+		fill_in 'Endereço', with: 'Av. Paulista, nº 2000'
 		select 'Sim', from: 'home_office'
-		fill_in I18n.t('job.registration_end_date'), with: 5.days.from_now
-		click_on I18n.t('register')
+		fill_in 'Data de expiração da vaga', with: 5.days.from_now
+		click_on 'Cadastrar'
 
 		expect(page).to have_content('Dev Ruby')
 		expect(page).to have_content("#{I18n.t('job.job_description')}: Dolore dolor qui incididunt ea tempor in adipisicing in.")
@@ -45,19 +45,19 @@ feature 'Head hunter register new jobs' do
 		login_as(head_hunter, scope: :head_hunter)
 		visit new_job_path
 
-		fill_in I18n.t('job.title'), with: 'Dev Ruby'
-		fill_in I18n.t('job.job_description'), 
+		fill_in 'Titulo da vaga', with: 'Dev Ruby'
+		fill_in 'Descrição da vaga', 
 									with: 'Dolore dolor qui incididunt ea tempor in adipisicing in.'
-		fill_in I18n.t('job.desired_skills'), 
+		fill_in 'Habilidades desejadas', 
 									with: 'Et ut aliquip enim veniam commodo aliquip commodo ad amet in elit culpa est.'
-		fill_in I18n.t('job.salary'), with: '2500.00'
-		select 'Júnior', from: I18n.t('job.experience_level')
-		select 'PJ', from: I18n.t('job.hiring_type')
-		fill_in I18n.t('job.address'), with: 'Av. Paulista, nº 2000'
+		fill_in 'Salário', with: '2500.00'
+		select 'Júnior', from: 'Nível de experiência'
+		select 'PJ', from: 'Tipo de contratação'
+		fill_in 'Endereço', with: 'Av. Paulista, nº 2000'
 		select 'Sim', from: 'home_office'
-		fill_in I18n.t('job.registration_end_date'), with: 5.days.from_now
-		click_on I18n.t('register')
-		click_on I18n.t('back')
+		fill_in 'Data de expiração da vaga', with: 5.days.from_now
+		click_on 'Cadastrar'
+	  click_on 'Voltar'
 
 		expect(current_path).to eq(jobs_path)
 	end
@@ -67,7 +67,7 @@ feature 'Head hunter register new jobs' do
 
 		login_as(head_hunter, scope: :head_hunter)
 		visit new_job_path
-		click_on I18n.t('register')
+		click_on 'Cadastrar'
 
 		expect(page).to have_content("Titulo da vaga não pode ficar em branco")
 		expect(page).to have_content("Descrição da vaga não pode ficar em branco")
