@@ -58,7 +58,7 @@ feature 'Head hunter register new jobs' do
 		click_on 'Cadastrar'
 	  click_on 'Voltar'
 
-		expect(current_path).to eq(jobs_path)
+		expect(current_path).to eq(root_path)
 	end
 
 	scenario 'and all fields must be fill in' do
