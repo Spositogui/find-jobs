@@ -17,7 +17,7 @@ feature 'Candidate fills in profile' do
     fill_in "Descrição",	with: 'Lorem Ipsum is simply dummy text of the printing'
     fill_in "Experiência", with: 'Lorem ipsum dolor sit amet, consectetur adipiscing.'
     page.attach_file('Foto', Rails.root.join('spec', 'support', 'avatar.png'))
-    click_on 'Cadastrar perfil'
+    click_on 'Enviar'
 
     expect(page).to have_content('Perfil criado com sucesso.')
     expect(page).to have_css("img[src*='avatar.png']")  
@@ -55,7 +55,7 @@ feature 'Candidate fills in profile' do
 
     login_as(candidate, scope: :candidate)
     visit new_candidate_profile_path
-    click_on 'Cadastrar perfil'
+    click_on 'Enviar'
     
     expect(page).to have_content('Nome completo não pode ficar em branco')
     expect(page).to have_content('Nome completo é muito curto (mínimo: 2 caracteres)')

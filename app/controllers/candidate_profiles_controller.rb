@@ -1,24 +1,38 @@
 class CandidateProfilesController < ApplicationController
   before_action :authenticate_candidate!
+  before_action :set_candidate_profile, only: [:show, :edit, :update]
 
   def show
-    @candidate_profile = CandidateProfile.find(params[:id])
   end
   
   def new
     @candidate_profile = CandidateProfile.new
-    @candidate_formations = CandidateFormation.all
+   get_candidate_formations
+  end
+
+  def edit
+   get_candidate_formations
   end
 
   def create 
     @candidate_profile = CandidateProfile.new(candidate_profile_params)
     @candidate_profile.candidate = current_candidate
     if @candidate_profile.save
-      redirect_to @candidate_profile
       flash[:notice] = I18n.t('candidate_profile.message.profile_success')
+      redirect_to @candidate_profile
     else
-      @candidate_formations = CandidateFormation.all
+      get_candidate_formations
       render :new
+    end
+  end
+
+  def update
+    if @candidate_profile.update(candidate_profile_params)
+      flash[:notice] = I18n.t('candidate_profile.message.update_profile_success')
+      redirect_to @candidate_profile
+    else
+      get_candidate_formations
+      render :edit
     end
   end
 
@@ -30,5 +44,13 @@ class CandidateProfilesController < ApplicationController
                                               :description,
                                               :experience,
                                               :avatar)
+  end
+
+  def set_candidate_profile
+    @candidate_profile = CandidateProfile.find(params[:id])
+  end
+
+  def get_candidate_formations
+    @candidate_formations = CandidateFormation.all
   end
 end

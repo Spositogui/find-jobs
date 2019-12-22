@@ -18,6 +18,10 @@ pt-BR:
     description: Descrição
     experience: Experiência
     profiling: Criando perfil
-    register_profile: Cadastrar perfil
+    send: Enviar
+    profile_update: Atualização do perfil
+    edit: Editar perfil
+    back: Voltar
     message:
       profile_success: Perfil criado com sucesso.
+      update_profile_success: Perfil atualizado com sucesso.

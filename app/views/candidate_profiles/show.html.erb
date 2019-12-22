@@ -16,3 +16,7 @@
   <dt><%= "#{I18n.t('candidate_profile.experience')}:" %></dt>
   <dd><%= @candidate_profile.experience %></dd>
 </dl>
+
+<div class="btn-edit">
+  <%= link_to I18n.t('candidate_profile.edit'), edit_candidate_profile_path(@candidate_profile) %>
+</div>
