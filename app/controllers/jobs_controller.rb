@@ -1,5 +1,5 @@
 class JobsController < ApplicationController
-	before_action :authenticate_head_hunter!
+	before_action :authenticate_head_hunter!, only: [:index, :new, :create]
 	load_and_authorize_resource
 
 	def index
@@ -18,6 +18,7 @@ class JobsController < ApplicationController
   def create
 		@job = Job.new(job_params)	
 		@job.home_office = params[:home_office]
+		@job.head_hunter = current_head_hunter
 		if @job.save
 			redirect_to @job
 		else
@@ -35,6 +36,7 @@ class JobsController < ApplicationController
 																:salary, :experience_level_id,
 																:hiring_type_id, :address,
 																:home_office,
-																:registration_end_date)
+																:registration_end_date,
+																:head_hunter_id)
 	end
 end

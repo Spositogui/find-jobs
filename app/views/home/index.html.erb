@@ -1,1 +1,9 @@
 <h3><%= I18n.t('welcome_message') %></h3>
+
+
+<% if candidate_signed_in? && 
+  current_candidate.candidate_profile.present? %>
+  
+  <h4><%= I18n.t('vacancies') %></h4>
+  <%= render partial: 'job', collection: @jobs %>
+<% end %>

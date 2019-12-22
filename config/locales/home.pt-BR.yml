@@ -5,5 +5,6 @@ pt-BR:
   sign_up_as_candidate: 'Como candidato'
   log_in: 'Entrar'
   log_out: 'Sair'
-  vacancies: 'Vagas cadastradas'
+  vacancies: 'Vagas'
+  registered_vacancies: 'Vagas cadastradas'
   profile: Perfil

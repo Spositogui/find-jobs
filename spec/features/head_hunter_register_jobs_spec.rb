@@ -25,16 +25,15 @@ feature 'Head hunter register new jobs' do
 		click_on 'Cadastrar'
 
 		expect(page).to have_content('Dev Ruby')
-		expect(page).to have_content("#{I18n.t('job.job_description')}: Dolore dolor qui incididunt ea tempor in adipisicing in.")
-		expect(page).to have_content("#{I18n.t('job.desired_skills')}: Et ut aliquip enim veniam "\
+		expect(page).to have_content("Descrição da vaga: Dolore dolor qui incididunt ea tempor in adipisicing in.")
+		expect(page).to have_content("Habilidades desejadas: Et ut aliquip enim veniam "\
 																"commodo aliquip commodo ad amet in elit culpa est.")
-		expect(page).to have_content("#{I18n.t('job.salary')}: R$ 2.500,00")
-		expect(page).to have_content("#{I18n.t('job.experience_level')}: Jú")
-		expect(page).to have_content("#{I18n.t('job.hiring_type')}: PJ")
-		expect(page).to have_content("#{I18n.t('job.address')}: Av. Paulista, nº 2000")
-		expect(page).to have_content("#{I18n.t('job.home_office')}: Sim")
-		expect(page).to have_content("#{I18n.t('job.registration_end_date')}: "\
-																"#{5.days.from_now.strftime('%d/%m/%Y')}")
+		expect(page).to have_content("Salário: R$ 2.500,00")
+		expect(page).to have_content("Nível de experiência: Jú")
+		expect(page).to have_content("Tipo de contratação: PJ")
+		expect(page).to have_content("Endereço: Av. Paulista, nº 2000")
+		expect(page).to have_content("Remoto: Sim")
+		expect(page).to have_content("Data de expiração da vaga: #{5.days.from_now.strftime('%d/%m/%Y')}")
 	end
 
 	scenario 'and back to jobs index' do

@@ -1,0 +1,4 @@
+pt-BR:
+  unauthorized:
+    manage:
+      all: "Você não tem autorização para acessar essa página"

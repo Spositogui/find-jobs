@@ -1,6 +1,7 @@
 class Job < ApplicationRecord
   belongs_to :experience_level
   belongs_to :hiring_type
+  belongs_to :head_hunter
 
   validates :title, presence: true
   validates :description, presence: true
