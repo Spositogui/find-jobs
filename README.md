@@ -1,24 +1,34 @@
-# README
+# Find Jobs
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Findjobs é um projeto que viza criar uma ponte entre empresas e pessoas que porcuram por empregos. Na plataforma as empresas cadastradas podem criar novas vagas onde os candidatos interessados podem se inscrever.
 
-Things you may want to cover:
+## Minhas configs:
 
-* Ruby version
+* Ruby version: 2.6.5
 
-* System dependencies
+* Rails version: 5.2.3
 
-* Configuration
+* System dependencies: Ubuntu 18.4
 
-* Database creation
+## Como iniciar o projeto
 
-* Database initialization
+* Seu computador dever ter preferencialmente O.S Linux
 
-* How to run the test suite
+* Instale as dependências necessárias , definidas no arquivo  `GemFile`, rodando o comando `bundle install`.
 
-* Services (job queues, cache servers, search engines, etc.)
+* SQLite3 é utilizado nesse projeto e para criar os bancos de dados basta rodar o comando `rails db:migrate`
 
-* Deployment instructions
+* Seguindo os passos acima você conseguirá ver o projeto em seu navegador executando o comando `rails server` e acessando o endereço `localhost:3000`
 
-* ...
+## Testes
+
+Nesse projeto foi utilizado `rspec` junto com `capybara`. Caso queira executar os testes, tendo seguido os passos acima, basta executar em seu terminal o comando `rspec`
+
+
+## Algumas Gems
+
+*Para fazer a autenticação foi utilizada a gem `Devise`.
+
+*Para cuidar da parte de autenticação foi utilizada a gem `Cancancan`
+
+*Para ajudar com a estilização do site eu utilizei o framework `Bulma`, gem `bulma-rails`, com o qual eu já tinha um pouco de experiência. 
