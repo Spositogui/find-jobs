@@ -81,7 +81,7 @@ feature 'Head hunter register new jobs' do
 	scenario 'and must be logged' do
 		visit new_job_path
 
-		expect(current_path).to eq(new_head_hunter_session_path)
+		expect(page).to have_content('Você não tem autorização para acessar essa página')
 	end
 
 	scenario 'and must be a headhunter user' do
@@ -90,7 +90,7 @@ feature 'Head hunter register new jobs' do
 		login_as(candidate, scope: :candidate)
 		visit new_job_path
 
-		expect(current_path).to eq(new_head_hunter_session_path)
+		expect(page).to have_content('Você não tem autorização para acessar essa página')
 	end
 
 	scenario 'and just headhunter user can see link for jobs' do

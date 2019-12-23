@@ -9,7 +9,7 @@ class ApplicationController < ActionController::Base
   def current_ability
     if head_hunter_signed_in?
       @current_ability ||= HeadHunterAbility.new(current_head_hunter)
-    elsif candidate_signed_in?
+    else candidate_signed_in?
       @current_ability ||= CandidateAbility.new(current_candidate)
     end
   end

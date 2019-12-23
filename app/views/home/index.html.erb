@@ -3,6 +3,12 @@
 
 <% if candidate_signed_in? && 
   current_candidate.candidate_profile.present? %>
+
+  <%= form_with(url:search_jobs_path, local: true, method: :get) do %>
+    <%= label_tag :q, I18n.t('localize_vacancies') %>
+    <%= text_field_tag :q %>
+    <%= submit_tag I18n.t('search') %>
+  <% end %>
   
   <h4><%= I18n.t('vacancies') %></h4>
   <%= render partial: 'job', collection: @jobs %>

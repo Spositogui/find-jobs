@@ -1,6 +1,6 @@
 class JobsController < ApplicationController
-	before_action :authenticate_head_hunter!, only: [:index, :new, :create]
 	load_and_authorize_resource
+	before_action :authenticate_head_hunter!, only: [:index, :new, :create]
 
 	def index
 	end
@@ -26,6 +26,13 @@ class JobsController < ApplicationController
 			@hiring_types = HiringType.all
 			render :new
 		end
+	end
+
+	def search 
+		@jobs = Job.where(title: params[:q]).
+			or(Job.where('description LIKE ?', "%#{params[:q]}%"))
+
+		render partial: 'search'
 	end
 
 	private
