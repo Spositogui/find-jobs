@@ -4,8 +4,8 @@ feature 'Candidate edits your profile' do
   scenario 'successfully' do
     candidate = Candidate.create!(email: 'candi@cand.com', password: '123456')
     candidate_formation = CandidateFormation.create!(name: 'Cursando superior')
-    candidate_formation2 = CandidateFormation.create!(name: 'Superior completo')
-    candidate_profile = CandidateProfile.create!(name: 'Alan Turing', nickname: 'Alan',
+    CandidateFormation.create!(name: 'Superior completo')
+    CandidateProfile.create!(name: 'Alan Turing', nickname: 'Alan',
                                                 date_of_birth: '02/05/1994',
                                                 candidate_formation: candidate_formation,
                                                 description: 'Lorem Ipsum is simply',
@@ -35,7 +35,7 @@ feature 'Candidate edits your profile' do
   scenario 'fields cant be blank' do
     candidate = Candidate.create!(email: 'candi@cand.com', password: '123456')
     candidate_formation = CandidateFormation.create!(name: 'Cursando superior')
-    candidate_profile = CandidateProfile.create!(name: 'Alan Turing', nickname: 'Alan',
+    CandidateProfile.create!(name: 'Alan Turing', nickname: 'Alan',
                                                 date_of_birth: '02/05/1994',
                                                 candidate_formation: candidate_formation,
                                                 description: 'Lorem Ipsum is simply',
@@ -55,7 +55,7 @@ feature 'Candidate edits your profile' do
   scenario 'must be logged' do
     candidate = Candidate.create!(email: 'candi@cand.com', password: '123456')
     candidate_formation = CandidateFormation.create!(name: 'Cursando superior')
-    candidate_profile = CandidateProfile.create!(name: 'Alan Turing', nickname: 'Alan',
+    CandidateProfile.create!(name: 'Alan Turing', nickname: 'Alan',
                                                 date_of_birth: '02/05/1994',
                                                 candidate_formation: candidate_formation,
                                                 description: 'Lorem Ipsum is simply',
@@ -70,7 +70,7 @@ feature 'Candidate edits your profile' do
   scenario 'back to home page' do
     candidate = Candidate.create!(email: 'candi@cand.com', password: '123456')
     candidate_formation = CandidateFormation.create!(name: 'Cursando superior')
-    candidate_profile = CandidateProfile.create!(name: 'Alan Turing', nickname: 'Alan',
+    CandidateProfile.create!(name: 'Alan Turing', nickname: 'Alan',
                                                 date_of_birth: '02/05/1994',
                                                 candidate_formation: candidate_formation,
                                                 description: 'Lorem Ipsum is simply',

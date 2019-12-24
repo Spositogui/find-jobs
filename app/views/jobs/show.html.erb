@@ -18,5 +18,15 @@
   <dt><%= "#{I18n.t('job.registration_end_date')}:" %></dt>
   <dd><%= @job.registration_end_date.strftime('%d/%m/%Y') %></dd>
 </dl>
+ 
+ 
+ <% if !head_hunter_signed_in? %>
+  <% unless current_candidate.jobs.exists?(@job.id)  %>
+    <div id='apply-btn'>
+      <%= link_to I18n.t('job.apply'), subscription_job_path(@job)%>
+    </div>
+  <% end %> 
+ <% end %>
+ 
 
 <%= link_to I18n.t('job.back'), root_path %>

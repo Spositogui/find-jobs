@@ -1,0 +1,10 @@
+<h4><%= I18n.t('job.subscribe_page_message') %></h4>
+
+<%= render 'shared/errors', obj: @job %>
+
+<%= form_with(model: @subscription, local: true, url: cofirmed_subscription_job_path(@job), method: :post) do |f| %>
+
+  <%= f.label :candidate_description %>
+  <%= f.text_area :candidate_description %>
+  <%= f.submit 'Confirmar' %>
+<% end %>              

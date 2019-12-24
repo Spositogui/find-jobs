@@ -1,12 +1,12 @@
 class JobsController < ApplicationController
 	load_and_authorize_resource
 	before_action :authenticate_head_hunter!, only: [:index, :new, :create]
+	before_action :set_job, only: [:show, :subscription, :cofirmed_subscription]
 
 	def index
 	end
 
 	def show
-		@job = Job.find(params[:id])
 	end
 
 	def new
@@ -35,6 +35,22 @@ class JobsController < ApplicationController
 		render partial: 'search'
 	end
 
+	def subscription 
+		@subscription = Subscription.new
+	end
+
+	def cofirmed_subscription
+		@job.subscriptions.build(candidate: current_candidate, 
+														candidate_description: params[:subscription][:candidate_description] ) 
+		if @job.save
+			flash[:notice] = 'Parabéns, você acaba de se inscrever para essa vaga.'
+			redirect_to @job
+		else
+			@subscription = Subscription.new
+			render :subscription
+		end
+	end
+
 	private
 
 	def job_params
@@ -45,5 +61,9 @@ class JobsController < ApplicationController
 																:home_office,
 																:registration_end_date,
 																:head_hunter_id)
+	end
+
+	def set_job
+		@job = Job.find(params[:id])
 	end
 end

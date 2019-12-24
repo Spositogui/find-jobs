@@ -5,8 +5,10 @@ class CandidateAbility
     candidate ||= Candidate.new
     if candidate.email.present?
       unless candidate.candidate_profile.nil?
-        can :search, Job, @job 
+        can :search, Job
         can :show, Job, @job
+        can :subscription, Job, @subscription
+        can :cofirmed_subscription, Job
       end
     else
       cannot :manage, Job

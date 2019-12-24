@@ -11,6 +11,7 @@ pt-BR:
         address:  Endereço
         home_office: Remoto
         registration_end_date: Data de expiração da vaga
+        subscription_id: Inscrição
   job:
     title: Titulo da vaga
     register_new_job: Registrar nova vaga
@@ -24,3 +25,6 @@ pt-BR:
     address: Endereço
     home_office: Remoto
     registration_end_date: Data de expiração da vaga
+    apply: Candidatar-me
+    subscribe_page_message: 
+      "Para confirmar sua inscrição, descreva o motivo pelo qual está se candidatando para essa vaga"

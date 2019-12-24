@@ -1,0 +1,7 @@
+pt-BR:
+  activerecord:
+    attributes:
+      subscription:
+        candidate_description: Descrição
+  models:
+    subscription: Inscrição
