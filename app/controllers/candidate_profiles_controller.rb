@@ -1,5 +1,6 @@
 class CandidateProfilesController < ApplicationController
-  before_action :authenticate_candidate!
+  before_action :authenticate_candidate!, unless: :head_hunter_signed_in?
+  load_and_authorize_resource
   before_action :set_candidate_profile, only: [:show, :edit, :update]
 
   def show
@@ -7,11 +8,11 @@ class CandidateProfilesController < ApplicationController
   
   def new
     @candidate_profile = CandidateProfile.new
-   get_candidate_formations
+    get_candidate_formations
   end
 
   def edit
-   get_candidate_formations
+    get_candidate_formations
   end
 
   def create 

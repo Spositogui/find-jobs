@@ -1,5 +1,7 @@
 <h3>Vagas Cadastradas</h3>
 
+<%= render partial: 'job', collection: @jobs %>
+
 <p>
 	<%= link_to I18n.t('job.register_new_job'), new_job_path %>
 </p>

@@ -25,7 +25,9 @@
     <div id='apply-btn'>
       <%= link_to I18n.t('job.apply'), subscription_job_path(@job)%>
     </div>
-  <% end %> 
+  <% end %>
+<% else %>
+  <%= link_to I18n.t('job.view_candidates'), subscribers_job_path(@job) %>
  <% end %>
  
 

@@ -28,3 +28,5 @@ pt-BR:
     apply: Candidatar-me
     subscribe_page_message: 
       "Para confirmar sua inscrição, descreva o motivo pelo qual está se candidatando para essa vaga"
+    view_candidates: Ver candidatos
+    not_have_subscribers: Não há candidatos inscritos para essa vaga no momento.

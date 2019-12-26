@@ -10,6 +10,11 @@ class CandidateAbility
         can :subscription, Job, @subscription
         can :cofirmed_subscription, Job
         can :read, Subscription
+        can :manage, CandidateProfile
+      end
+
+      if candidate.candidate_profile.nil?
+        can :create, CandidateProfile
       end
     else
       cannot :manage, Job

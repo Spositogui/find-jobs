@@ -1,0 +1,17 @@
+<h3><%= "Vaga: #{@job.title}" %></h3>
+
+<h4>Candidatos: </h4>
+
+<% if @subscribers.any? %>
+  <div class="subscribers"> 
+    <% @subscribers.each do |subscribe| %>
+      <div class="subscriber">
+        <%= link_to subscribe.candidate.candidate_profile.name, 
+                    subscribe.candidate.candidate_profile %>
+      </div>
+    <% end %>
+  </div>
+<% else %>
+  <p><%= I18n.t('job.not_have_subscribers') %></p>
+<% end %>
+

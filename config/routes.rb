@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   resources :jobs, only: [:index, :show, :new, :create] do
     get 'search', on: :collection
     get 'subscription', on: :member
+    get 'subscribers', on: :member
     post 'cofirmed_subscription', on: :member
   end
   resources :candidate_profiles, only: [:show, :new, :create, :edit, :update]

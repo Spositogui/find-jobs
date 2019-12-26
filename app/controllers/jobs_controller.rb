@@ -4,6 +4,7 @@ class JobsController < ApplicationController
 	before_action :set_job, only: [:show, :subscription, :cofirmed_subscription]
 
 	def index
+		@jobs = Job.where('head_hunter_id = ?', current_head_hunter.id)
 	end
 
 	def show
@@ -28,16 +29,6 @@ class JobsController < ApplicationController
 		end
 	end
 
-	def search 
-		@jobs = Job.where(title: params[:q]).
-			or(Job.where('description LIKE ?', "%#{params[:q]}%"))
-
-		render partial: 'search'
-	end
-
-	def subscription 
-		@subscription = Subscription.new
-	end
 
 	def cofirmed_subscription
 		@job.subscriptions.build(candidate: current_candidate, 
@@ -49,6 +40,22 @@ class JobsController < ApplicationController
 			@subscription = Subscription.new
 			render :subscription
 		end
+	end
+
+	def search 
+		@jobs = Job.where(title: params[:q]).
+			or(Job.where('description LIKE ?', "%#{params[:q]}%"))
+
+		render partial: 'search'
+	end
+
+	def subscribers
+		@job = Job.find(params[:id])
+		@subscribers = @job.subscriptions
+	end
+
+	def subscription 
+		@subscription = Subscription.new
 	end
 
 	private
