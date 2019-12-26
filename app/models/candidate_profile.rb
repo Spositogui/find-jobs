@@ -4,6 +4,7 @@ class CandidateProfile < ApplicationRecord
   has_one_attached :avatar
 
   validates :name, presence: true, length: {minimum: 2, maximum: 40}
+  validates :nickname, presence: true
   validates :date_of_birth, presence: true
   validates :description, presence: true
 

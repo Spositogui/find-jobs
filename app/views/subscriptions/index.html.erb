@@ -1,0 +1,11 @@
+<h3>  
+  <%= "Aqui estão suas vagas, "\
+  "#{@candidate.candidate_profile.nickname}:" %>
+</h3>
+
+<div  class='vacancies'>
+  <% @vacancies.each do |vacancy| %>
+    <p><%= link_to vacancy.title, vacancy %></p>
+    <p><%= vacancy.address %></p>
+  <% end %>
+</div>

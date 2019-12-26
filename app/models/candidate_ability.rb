@@ -9,6 +9,7 @@ class CandidateAbility
         can :show, Job, @job
         can :subscription, Job, @subscription
         can :cofirmed_subscription, Job
+        can :read, Subscription
       end
     else
       cannot :manage, Job

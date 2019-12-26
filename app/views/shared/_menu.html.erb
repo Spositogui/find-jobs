@@ -4,6 +4,10 @@
       <%= link_to  "Home", root_path %>
 			<% if head_hunter_signed_in? %>
 				<%= link_to I18n.t('registered_vacancies'), jobs_path %>
+			<% elsif candidate_signed_in?  %>
+				<% unless current_candidate.candidate_profile.nil? %>
+					<%= link_to I18n.t('my_vacancies'), my_vacancies_path %>
+				<% end %>
 			<% end %>
 		</div>
 
