@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_12_23_231656) do
+ActiveRecord::Schema.define(version: 2019_12_26_184642) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -63,6 +63,16 @@ ActiveRecord::Schema.define(version: 2019_12_23_231656) do
     t.datetime "updated_at", null: false
     t.index ["email"], name: "index_candidates_on_email", unique: true
     t.index ["reset_password_token"], name: "index_candidates_on_reset_password_token", unique: true
+  end
+
+  create_table "comments", force: :cascade do |t|
+    t.integer "candidate_id"
+    t.integer "head_hunter_id"
+    t.text "message"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["candidate_id"], name: "index_comments_on_candidate_id"
+    t.index ["head_hunter_id"], name: "index_comments_on_head_hunter_id"
   end
 
   create_table "experience_levels", force: :cascade do |t|

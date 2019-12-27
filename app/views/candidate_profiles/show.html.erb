@@ -17,6 +17,23 @@
   <dd><%= @candidate_profile.experience %></dd>
 </dl>
 
-<div class="btn-edit">
-  <%= link_to I18n.t('candidate_profile.edit'), edit_candidate_profile_path(@candidate_profile) %>
-</div>
+
+<% if can? :update, @candidate_profile %>
+  <div class="btn-edit">
+    <%= link_to I18n.t('candidate_profile.edit'), edit_candidate_profile_path(@candidate_profile) %>
+  </div>
+<% end %>
+
+
+<% if head_hunter_signed_in? %>
+  <h4><%= "#{I18n.t('comment.comments')}:" %></h4>
+
+    <div class="candidate-profile-comments">  
+      <% @candidate.comments.each do |comment| %>
+        <p><%= comment.message %></p>
+        <p><%= comment.created_at.strftime("%d/%m/%Y às %H:%M") %>
+      <% end %>
+    </div>
+
+  <%= link_to I18n.t('comment.comment'), new_candidate_profile_comment_path(@candidate_profile) %>
+<% end %>

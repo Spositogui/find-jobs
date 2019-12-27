@@ -4,6 +4,7 @@ class CandidateProfilesController < ApplicationController
   before_action :set_candidate_profile, only: [:show, :edit, :update]
 
   def show
+    @candidate = @candidate_profile.candidate
   end
   
   def new

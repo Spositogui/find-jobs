@@ -43,7 +43,7 @@ class JobsController < ApplicationController
 	end
 
 	def search 
-		@jobs = Job.where(title: params[:q]).
+		@jobs = Job.where("title = ?", params[:q]).
 			or(Job.where('description LIKE ?', "%#{params[:q]}%"))
 
 		render partial: 'search'

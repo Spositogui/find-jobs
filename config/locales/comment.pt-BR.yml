@@ -1,0 +1,11 @@
+pt-BR:
+  activerecord: 
+    attributes:
+      comment:
+        message: Mensagem
+  models:
+    comment: Comentário
+  comment:
+    comment: Comentar
+    comments: Comentários
+    submit: Enviar 

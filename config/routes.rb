@@ -7,7 +7,9 @@ Rails.application.routes.draw do
     get 'subscribers', on: :member
     post 'cofirmed_subscription', on: :member
   end
-  resources :candidate_profiles, only: [:show, :new, :create, :edit, :update]
+  resources :candidate_profiles, only: [:show, :new, :create, :edit, :update] do
+    resources :comments, only: [:new, :create]
+  end
   get '/my_vacancies', to: 'subscriptions#index'
   root to: 'home#index'
 end

@@ -1,0 +1,9 @@
+<h3><%= "Novo comentário para #{@candidate_profile.nickname}." %></h3>
+
+<%= render 'shared/errors', obj: @comment %>
+
+<%= form_for [@candidate_profile, @comment]  do |f| %>
+  <%= f.label :message %>
+  <%= f.text_area :message %>
+  <%= f.submit I18n.t('comment.submit') %>
+<% end %>
