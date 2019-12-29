@@ -6,7 +6,10 @@
 <% if @subscribers.any? %>
   <div class="subscribers"> 
     <% @subscribers.each do |subscribe| %>
-    <div class="subscriber">
+      <div class="subscriber">
+        <span class="icon">
+          <i onclick="favoriteCandidate(this)" class="far fa-star"></i>
+        </span>
         <%= link_to subscribe.candidate.candidate_profile.name, 
                     subscribe.candidate.candidate_profile %>
       </div>

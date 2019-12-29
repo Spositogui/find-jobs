@@ -14,3 +14,18 @@
 //= require activestorage
 //= require turbolinks
 //= require_tree .
+
+function favoriteCandidate(element){
+  if (element.classList.contains('active'))
+  {
+    element.classList.add('far')
+    element.classList.remove('fas')
+    element.classList.remove('active');
+  }
+  else if (!element.classList.contains('active'))
+  {
+    element.classList.add('fas')
+    element.classList.remove('far')
+    element.classList.add('active');
+  }
+}
