@@ -1,0 +1,28 @@
+<h3>Criando nova proposta</h3>
+
+<%= form_with(model: @subscriptions, url: [@job, @proposal], local: true) do |f| %>
+  <p><%= f.label :candidate_id, 'Candidato' %></p>
+  <p><%= f.collection_select(:candidate_id, @subscriptions.candidate_id, :id, :name) %></p>
+<% end %>
+
+<%= form_with(model: @proposal, url: [@job, @proposal],
+              local: true) do |f| %>
+            
+  <p><%= f.label :company_name %></p>
+  <p><%= f.text_field :company_name %></p>
+  <p><%= f.label :start_date %></p>
+  <p><%= f.datetime_field :start_date %></p>
+  <p><%= f.label :salary %></p>
+  <p><%= f.number_field :salary %></p>
+  <p><%= f.label :benefits %></p>
+  <p><%= f.text_area :benefits %></p>
+  <p><%= f.label :role %></p>
+  <p><%= f.text_field :role %></p>
+  <p><%= f.label :responsabilities %></p>
+  <p><%= f.text_area :responsabilities %></p>
+  <p><%= f.label :hiring_type_id %></p>
+  <p><%= f.collection_select(:hiring_type_id, @hiring_type, :id, :name) %></p>
+  <p><%= f.label :others %></p>
+  <p><%= f.text_area :others %></p>
+  <p><%= f.submit I18n.t('proposal.send_proposal') %></p>
+<% end %>

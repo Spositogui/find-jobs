@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_12_26_184642) do
+ActiveRecord::Schema.define(version: 2019_12_27_211413) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -116,6 +116,22 @@ ActiveRecord::Schema.define(version: 2019_12_26_184642) do
     t.index ["experience_level_id"], name: "index_jobs_on_experience_level_id"
     t.index ["head_hunter_id"], name: "index_jobs_on_head_hunter_id"
     t.index ["hiring_type_id"], name: "index_jobs_on_hiring_type_id"
+  end
+
+  create_table "proposals", force: :cascade do |t|
+    t.string "company_name"
+    t.date "start_date"
+    t.decimal "salary"
+    t.text "benefits"
+    t.string "role"
+    t.text "responsabilities"
+    t.integer "hiring_type_id"
+    t.text "others"
+    t.integer "subscription_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["hiring_type_id"], name: "index_proposals_on_hiring_type_id"
+    t.index ["subscription_id"], name: "index_proposals_on_subscription_id"
   end
 
   create_table "subscriptions", force: :cascade do |t|

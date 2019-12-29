@@ -6,6 +6,7 @@ Rails.application.routes.draw do
     get 'subscription', on: :member
     get 'subscribers', on: :member
     post 'cofirmed_subscription', on: :member
+    resources :proposals, only: [:new, :create]
   end
   resources :candidate_profiles, only: [:show, :new, :create, :edit, :update] do
     resources :comments, only: [:new, :create]

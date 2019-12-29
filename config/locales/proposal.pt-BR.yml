@@ -1,0 +1,17 @@
+pt-BR:
+  activerecord:
+    attributes:
+      proposal:
+        company_name: Nome da empresa
+        start_date: Data de ínicio
+        salary: Salário
+        benefits: Benefícios
+        role: Cargo
+        responsabilities: Responsabilidades
+        hiring_type_id: Tipo de contratação
+        others: Outros
+        subscription: Inscrição
+  models:
+   proposal: Proposta
+  proposal:
+    send_proposal: Enviar proposta

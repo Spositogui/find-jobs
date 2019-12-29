@@ -18,4 +18,6 @@ class Job < ApplicationRecord
   enum home_office: [:nao, :sim]
   enum status: [:active, :inactive]
 
+
+  #TODO data de expiração deve ser maior que data atual
 end

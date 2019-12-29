@@ -35,7 +35,7 @@ feature 'Head hunter sends messages to candidates' do
     fill_in 'Mensagem', with: 'Ac lobortis placerat egestas, ornare.'
     click_on 'Enviar'
 
-    expect(current_path).to eq(candidate_profile_path(candidate))
+    expect(current_path).to eq(candidate_profile_path(candidate.candidate_profile))
     expect(page).to have_content('Comentário criado com sucesso.')
     expect(page).to have_content('Comentários:')
     expect(page).to have_content('Ac lobortis placerat egestas, ornare.')
@@ -65,7 +65,7 @@ feature 'Head hunter sends messages to candidates' do
                               candidate_description: 'Experiencia com mais de 10 anos')
 
     login_as(head_hunter, scope: :head_hunter)
-    visit candidate_profile_path(candidate)
+    visit candidate_profile_path(candidate.candidate_profile)
     click_on 'Comentar'
     click_on 'Enviar'
 
@@ -98,7 +98,7 @@ feature 'Head hunter sends messages to candidates' do
                     message: 'Velit quisque fames lacinia, aenean.')
 
     login_as(head_hunter, scope: :head_hunter)
-    visit candidate_profile_path(candidate)
+    visit candidate_profile_path(candidate.candidate_profile)
     
     expect(page).to have_content('At pellentesque mi egestas, eros.')
     expect(page).to have_content('Velit quisque fames lacinia, aenean.')
@@ -129,7 +129,7 @@ feature 'Head hunter sends messages to candidates' do
                     message: 'At pellentesque mi egestas, eros.')
 
     login_as(head_hunter2, scope: :head_hunter)
-    visit candidate_profile_path(candidate)
+    visit candidate_profile_path(candidate.candidate_profile)
 
     expect(page).to have_content('At pellentesque mi egestas, eros.')
   end
@@ -157,7 +157,7 @@ feature 'Head hunter sends messages to candidates' do
     Comment.create!(candidate: candidate, head_hunter: head_hunter, 
                     message: 'At pellentesque mi egestas, eros.')
 
-    visit candidate_profile_path(candidate)
+    visit candidate_profile_path(candidate.candidate_profile)
 
     expect(page).to have_content('Para continuar, faça login ou registre-se')
   end
