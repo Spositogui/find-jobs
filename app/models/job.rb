@@ -13,11 +13,16 @@ class Job < ApplicationRecord
   validates :hiring_type_id, presence: true
   validates :address, presence: true
   validates :registration_end_date, presence: true
-
+  validate :registration_end_date_must_be_grater_than_current_day
 
   enum home_office: [:nao, :sim]
   enum status: [:active, :inactive]
 
+  def registration_end_date_must_be_grater_than_current_day
+    return unless registration_end_date.present?
 
-  #TODO data de expiração deve ser maior que data atual
+    if registration_end_date <= Date.current
+      errors.add(:registration_end_date, 'deve ser maior que a data atual.')
+    end
+  end
 end

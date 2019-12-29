@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 feature  'HeadHunter submit proposal to candidates' do
-  scenario 'successfully' do
+ xscenario 'successfully' do
     candidate_formation = CandidateFormation.create!(name: 'Cursando superior')
     candidate = Candidate.create!(email: 'candi@cand.com', password: '123456')
     CandidateProfile.create!(name: 'Alan Turing', nickname: 'Alan',

@@ -6,11 +6,11 @@ RSpec.describe CandidateProfile, type: :model do
       candidate = Candidate.new(email: 'joe@hotmail.com', password: '123456')
       candidate_formation = CandidateFormation.new(name: 'Cursando superior')
       candidate_profile = CandidateProfile.new(name: 'Alan Turing', nickname: 'Alan',
-                                                   date_of_birth: '02/05/1994',
-                                                   candidate_formation: candidate_formation,
-                                                   description: 'Lorem Ipsum is simply',
-                                                   experience: 'Lorem ipsum dolor sit amet',
-                                                   candidate: candidate)
+                                              date_of_birth: '02/05/1994',
+                                              candidate_formation: candidate_formation,
+                                              description: 'Lorem Ipsum is simply',
+                                              experience: 'Lorem ipsum dolor sit amet',
+                                              candidate: candidate)
 
       candidate_profile.valid?
 
