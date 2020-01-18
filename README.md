@@ -29,6 +29,6 @@ Nesse projeto foi utilizado `rspec` junto com `capybara`. Caso queira executar o
 
 *Para fazer a autenticação foi utilizada a gem `Devise`.
 
-*Para cuidar da parte de autenticação foi utilizada a gem `Cancancan`
+*Para cuidar da parte de autorização foi utilizada a gem `Cancancan`
 
 *Para ajudar com a estilização do site eu utilizei o framework `Bulma`, gem `bulma-rails`, com o qual eu já tinha um pouco de experiência. 
