@@ -7,9 +7,15 @@
   <div class="subscribers"> 
     <% @subscribers.each do |subscribe| %>
       <div class="subscriber">
-        <span class="icon">
-          <i onclick="favoriteCandidate(this)" class="far fa-star"></i>
-        </span>
+         <%= button_to highlight_candidate_subscription_path(subscribe), class: 'markup-candidate' do %>
+            <span class="icon">
+              <% if subscribe.unhighlighted? %>
+                <i class="far fa-star" ></i>
+              <% elsif subscribe.highlighted? %>
+                <i class="fas fa-star" ></i>
+              <% end %>
+            </span>
+          <% end %>
         <%= link_to subscribe.candidate.candidate_profile.name, 
                     subscribe.candidate.candidate_profile %>
       </div>

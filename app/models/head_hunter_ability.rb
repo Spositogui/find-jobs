@@ -7,6 +7,7 @@ class HeadHunterAbility
       can :read, CandidateProfile, @candidate_profile
       can [:new, :create], Comment
       can [:new, :create], Proposal
+      can :highlight_candidate, Subscription
     end
   end
 end

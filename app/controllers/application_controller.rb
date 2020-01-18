@@ -23,7 +23,6 @@ class ApplicationController < ActionController::Base
     elsif candidate_signed_in?
       stored_location_for(resource) || root_path
     end
-    
   end
 
 end
