@@ -1,11 +1,10 @@
-<h3>Criando nova proposta</h3>
+<h3>
+  Criando proposta para o candidato <%= @subscription.candidate.candidate_profile.name %>.
+</h3>
 
-<%= form_with(model: @subscriptions, url: [@job, @proposal], local: true) do |f| %>
-  <p><%= f.label :candidate_id, 'Candidato' %></p>
-  <p><%= f.collection_select(:candidate_id, @subscriptions.candidate_id, :id, :name) %></p>
-<% end %>
+<%= render 'shared/errors', obj: @proposal %>
 
-<%= form_with(model: @proposal, url: [@job, @proposal],
+<%= form_with(model: @proposal, url: [@subscription, @proposal],
               local: true) do |f| %>
             
   <p><%= f.label :company_name %></p>

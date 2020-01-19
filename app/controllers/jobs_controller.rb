@@ -51,7 +51,7 @@ class JobsController < ApplicationController
 
 	def subscribers
 		@job = Job.find(params[:id])
-		@subscribers = @job.subscriptions
+		@subscriptions = @job.subscriptions
 	end
 
 	def subscription 

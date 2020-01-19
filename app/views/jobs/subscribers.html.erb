@@ -1,23 +1,28 @@
 <h3><%= "Vaga: #{@job.title}" %></h3>
 
 <h4>Candidatos: </h4>
-<p><%= link_to "Criar proposta", new_job_proposal_path(@job) %></p>
 
-<% if @subscribers.any? %>
+<% if @subscriptions.any? %>
   <div class="subscribers"> 
-    <% @subscribers.each do |subscribe| %>
+    <% @subscriptions.each do |subscription| %>
       <div class="subscriber">
-         <%= button_to highlight_candidate_subscription_path(subscribe), class: 'markup-candidate' do %>
+         <%= button_to highlight_candidate_subscription_path(subscription), class: 'markup-candidate' do %>
             <span class="icon">
-              <% if subscribe.unhighlighted? %>
+              <% if subscription.unhighlighted? %>
                 <i class="far fa-star" ></i>
-              <% elsif subscribe.highlighted? %>
+              <% elsif subscription.highlighted? %>
                 <i class="fas fa-star" ></i>
               <% end %>
             </span>
           <% end %>
-        <%= link_to subscribe.candidate.candidate_profile.name, 
-                    subscribe.candidate.candidate_profile %>
+        <%= link_to subscription.candidate.candidate_profile.name, 
+                    subscription.candidate.candidate_profile %>
+        
+        <% if subscription.proposal.nil? %>
+          <%= link_to I18n.t('proposal.new_proposal'), new_subscription_proposal_path(subscription) %>
+        <% elsif subscription.proposal.present? %>
+          <%= link_to I18n.t('proposal.sent_proposal'), subscription_proposal_path(subscription) %>
+        <% end %>         
       </div>
     <% end %>
   </div>

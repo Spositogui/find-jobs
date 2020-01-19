@@ -8,10 +8,13 @@ pt-BR:
         benefits: Benefícios
         role: Cargo
         responsabilities: Responsabilidades
+        hiring_type: Tipo de contratação
         hiring_type_id: Tipo de contratação
         others: Outros
         subscription: Inscrição
   models:
    proposal: Proposta
   proposal:
+    new_proposal: Criar proposta
+    sent_proposal: Proposta enviada
     send_proposal: Enviar proposta
