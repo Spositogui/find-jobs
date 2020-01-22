@@ -21,7 +21,7 @@
         <% if subscription.proposal.nil? %>
           <%= link_to I18n.t('proposal.new_proposal'), new_subscription_proposal_path(subscription) %>
         <% elsif subscription.proposal.present? %>
-          <%= link_to I18n.t('proposal.sent_proposal'), subscription_proposal_path(subscription) %>
+          <%= link_to I18n.t('proposal.sent_proposal'), proposal_path(subscription.proposal) %>
         <% end %>         
       </div>
     <% end %>

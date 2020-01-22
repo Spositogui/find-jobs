@@ -1,0 +1,18 @@
+<dl>
+  <dt>Empresa:</dt>
+  <dd><%= @proposal.company_name %></dd>
+  <dt>Data de ínicio:</dt>
+  <dd><%= @proposal.start_date.strftime('%d/%m/%Y') %></dd>
+  <dt>Salário:</dt>
+  <dd><%= number_to_currency @proposal.salary %></dd>
+  <dt>Benefícios:</dt>
+  <dd><%= @proposal.benefits %></dd>
+  <dt>Cargo:</dt>
+  <dd><%= @proposal.role %></dd>
+  <dt>Responsabilidades:</dt>
+  <dd><%= @proposal.responsabilities %></dd>
+  <dt>Tipo de contratação:</dt>
+  <dd><%= @proposal.hiring_type.name %></dd>
+  <dt>Outros:</dt>
+  <dd><%= @proposal.others %></dd>
+</dl>

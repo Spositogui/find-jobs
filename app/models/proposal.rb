@@ -8,4 +8,6 @@ class Proposal < ApplicationRecord
   validates :benefits, presence: true
   validates :role, presence: true
   validates :responsabilities, presence: true
+
+  #TODO start_date must be greater than the current day
 end

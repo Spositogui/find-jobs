@@ -3,10 +3,14 @@ Rails.application.routes.draw do
   devise_for :candidates
   devise_for :head_hunters
   get '/my_vacancies', to: 'subscriptions#index'
+  get '/my_proposals', to: 'proposals#index'
+  
   resources :subscriptions, only: [] do
     post 'highlight_candidate', on: :member
-    resources :proposals, only: [:new, :create, :show]
+    resources :proposals, only: [:new, :create]
   end
+
+  resources :proposals, only: [:show]
   
   resources :jobs, only: [:index, :show, :new, :create] do
     member do

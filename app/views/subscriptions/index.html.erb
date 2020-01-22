@@ -3,6 +3,8 @@
   "#{@candidate.candidate_profile.nickname}:" %>
 </h3>
 
+<p><%= link_to I18n.t('proposal.proposals'), my_proposals_path %></p>
+
 <div  class='vacancies'>
   <% @vacancies.each do |vacancy| %>
     <p><%= link_to vacancy.title, vacancy %></p>

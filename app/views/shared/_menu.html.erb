@@ -7,6 +7,7 @@
 			<% elsif candidate_signed_in?  %>
 				<% unless current_candidate.candidate_profile.nil? %>
 					<%= link_to I18n.t('my_vacancies'), my_vacancies_path %>
+					<%= link_to I18n.t('my_proposals'),	my_proposals_path %>
 				<% end %>
 			<% end %>
 		</div>

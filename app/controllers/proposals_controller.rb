@@ -2,6 +2,18 @@ class ProposalsController < ApplicationController
   before_action :authenticate_head_hunter!, unless: :candidate_signed_in?
   load_and_authorize_resource
 
+  def index 
+    if candidate_signed_in?
+      @proposals = current_candidate.proposals
+    elsif head_hunter_signed_in?
+      #TODO collection headhunter proposals
+    end
+  end
+
+  def show
+    @proposal = Proposal.find(params[:id])
+  end
+
   def new
     @subscription = Subscription.find(params[:subscription_id])
     @proposal = Proposal.new

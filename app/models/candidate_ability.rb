@@ -12,6 +12,7 @@ class CandidateAbility
         can :read, Subscription
         can :manage, CandidateProfile
         can :read, Comment
+        can [:index, :show], Proposal
       end
 
       if candidate.candidate_profile.nil?

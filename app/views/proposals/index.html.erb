@@ -1,0 +1,18 @@
+<h3>
+  <% if candidate_signed_in? %>
+    <%= "Olá #{current_candidate.candidate_profile.name}, aqui estão suas propostas:" %>
+  <% end %>
+</h3>
+
+<% if @proposals.any? %>
+  <% @proposals.each do |proposal| %>
+    <div class="candidate-proposal">
+      <p>Empresa: <%= link_to proposal.company_name, proposal %></p>
+      <p>Cargo: <%= proposal.role %></p>
+    </div>
+  <% end %>
+<% else %>
+  <p><%= I18n.t("proposal.you_don't_have_any_proposal") %>.</p>
+<% end %>
+
+
