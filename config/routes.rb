@@ -4,15 +4,12 @@ Rails.application.routes.draw do
   devise_for :head_hunters
   get '/my_vacancies', to: 'subscriptions#index'
   get '/my_proposals', to: 'proposals#index'
-  
   resources :subscriptions, only: [] do
     post 'highlight_candidate', on: :member
-    resources :proposals, only: [:new, :create]
+    resources :proposals, only: %i[new create]
   end
-
   resources :proposals, only: [:show]
-  
-  resources :jobs, only: [:index, :show, :new, :create] do
+  resources :jobs, only: %i[index show new create] do
     member do
       get 'subscription'
       get 'subscribers'
@@ -20,8 +17,13 @@ Rails.application.routes.draw do
     end
     get 'search', on: :collection
   end
+  resources :candidate_profiles, only: %i[show new create edit update] do
+    resources :comments, only: %i[new create]
+  end
 
-  resources :candidate_profiles, only: [:show, :new, :create, :edit, :update] do
-    resources :comments, only: [:new, :create]
+  namespace :api do
+    namespace :v1 do
+      resources :jobs, only: %i[index]
+    end
   end
 end
