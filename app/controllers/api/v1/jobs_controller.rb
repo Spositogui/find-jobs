@@ -29,4 +29,21 @@ class Api::V1::JobsController < Api::V1::ApiController
       render json: {'message': @job.errors.full_messages}, status: :precondition_failed
     end
   end
+
+  def update
+    @job = Job.find(params[:id])
+    
+    if @job.update(params.require(:job).permit(:title, :description,
+                                                :salary, :address,
+                                                :skills_description,
+                                                :experience_level_id,
+                                                :hiring_type_id,
+                                                :registration_end_date,
+                                                :head_hunter_id))
+
+      render json: @job
+    else
+      render json: { 'message': @job.errors.full_messages }, status: :precondition_failed
+    end
+  end
 end

@@ -83,7 +83,7 @@ describe 'Job Management' do
     end
 
     it 'not create' do
-      expect{
+      expect {
         post api_v1_jobs_path, params: { job: {}}
 
         expect(response).to have_http_status(:precondition_failed)
@@ -108,6 +108,42 @@ describe 'Job Management' do
       expect(response).to have_http_status(:precondition_failed)
       expect(json[:message]).to include('Nível de experiência não pode ficar em branco')
       expect(json[:message]).to include('Tipo de contratação não pode ficar em branco')    
+    end
+  end
+
+  context 'update' do
+    it 'edit job correctly' do
+      job = create(:job, title: 'Dev Jr', salary: 2000.0)
+
+      expect {
+        patch api_v1_job_path(job), params: { job: { title: 'Analista pleno',
+                                                     salary: 4000.0 } }
+
+        expect(response).to have_http_status(:ok)
+        job.reload
+        expect(job.title).to eq('Analista pleno')
+        expect(job.salary.to_s).to eq('4000.0')  
+      }.to change(Job, :count).by(0)
+    end
+
+    it 'model not found' do
+      patch api_v1_job_path(id: 999)
+      
+      expect(response).to have_http_status(:not_found)
+      expect(response.body).to eq('Object not found')
+    end
+
+    it 'mandatory fields not send' do
+      hiring = create(:hiring_type, name: 'CLT')
+      job = create(:job, hiring_type: hiring)
+
+      patch api_v1_job_path(job), params: { job: { hiring_type_id: nil } }
+      json = JSON.parse(response.body, symbolize_names: true)
+      
+      expect(response).to have_http_status(:precondition_failed)
+      expect(json[:message]).to include('Tipo de contratação não pode ficar em branco')
+      job.reload
+      expect(job.hiring_type_id).not_to eq(nil)  
     end
   end
 end
