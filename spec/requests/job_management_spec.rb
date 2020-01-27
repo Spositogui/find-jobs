@@ -50,4 +50,64 @@ describe 'Job Management' do
       expect(response.body).to eq('Object not found') 
     end
   end
+
+  context 'create' do
+    it 'create correctly' do
+      head_hunter = create(:head_hunter)
+      experience = create(:experience_level)
+      hiring = create(:hiring_type)
+
+      expect {
+        post api_v1_jobs_path, params: { job: { title: 'Dev Ruby',
+                                                description: 'Vestibulum ornare non',
+                                                skills_description: 'Nulla ac elementum quam.',
+                                                salary: 2500.0,
+                                                experience_level_id: experience.id,
+                                                hiring_type_id: hiring.id,
+                                                address: 'Av. Ruby, nº 263',
+                                                registration_end_date: 10.days.from_now,
+                                                head_hunter_id: head_hunter.id } }
+
+        json = JSON.parse(response.body, symbolize_names: true)
+
+        expect(response).to have_http_status(:ok)
+        expect(json[:title]).to eq('Dev Ruby')
+        expect(json[:description]).to eq('Vestibulum ornare non')
+        expect(json[:skills_description]).to eq('Nulla ac elementum quam.')
+        expect(json[:salary]).to eq('2500.0')
+        expect(json[:experience_level_id]).to eq(experience.id)
+        expect(json[:hiring_type_id]).to eq(hiring.id)
+        expect(json[:address]).to eq('Av. Ruby, nº 263')
+        expect(json[:registration_end_date]).to eq(10.days.from_now.strftime('%Y-%m-%d'))
+      }.to change(Job, :count).by(1)
+    end
+
+    it 'not create' do
+      expect{
+        post api_v1_jobs_path, params: { job: {}}
+
+        expect(response).to have_http_status(:precondition_failed)
+        expect(response.body).to eq('Inexistent parameters')
+      }.to change(Job, :count).by(0)
+    end
+
+    it 'mandatory field not send' do
+      head_hunter = create(:head_hunter)
+
+      post api_v1_jobs_path, params: { job: { title: 'Dev Ruby',
+                                              description: 'Vestibulum ornare non',
+                                              skills_description: 'Nulla ac elementum quam.',
+                                              salary: 2500.0,
+                                              experience_level_id: nil,
+                                              hiring_type_id: nil,
+                                              address: 'Av. Ruby, nº 263',
+                                              registration_end_date: 10.days.from_now,
+                                              head_hunter_id: head_hunter.id } }
+      json = JSON.parse(response.body, symbolize_names: true)
+
+      expect(response).to have_http_status(:precondition_failed)
+      expect(json[:message]).to include('Nível de experiência não pode ficar em branco')
+      expect(json[:message]).to include('Tipo de contratação não pode ficar em branco')    
+    end
+  end
 end
