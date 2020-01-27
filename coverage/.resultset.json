@@ -4,6 +4,11 @@
       "/home/guilherme/environment/treinaD/find-jobs/app/controllers/api/v1/jobs_controller.rb": [
         1,
         1,
+        0,
+        0,
+        0,
+        null,
+        null,
         1,
         1,
         0,
@@ -12,6 +17,11 @@
       ],
       "/home/guilherme/environment/treinaD/find-jobs/app/controllers/api/v1/api_controller.rb": [
         1,
+        1,
+        null,
+        1,
+        1,
+        null,
         null
       ],
       "/home/guilherme/environment/treinaD/find-jobs/app/models/job.rb": [
@@ -45,6 +55,6 @@
         null
       ]
     },
-    "timestamp": 1580060663
+    "timestamp": 1580090223
   }
 }
