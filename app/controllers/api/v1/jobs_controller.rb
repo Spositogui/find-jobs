@@ -21,12 +21,11 @@ class Api::V1::JobsController < Api::V1::ApiController
                                                :hiring_type_id,
                                                :registration_end_date,
                                                :head_hunter_id))
-  
     if @job.valid?
       @job.save!
       render json: @job
     else
-      render json: {'message': @job.errors.full_messages}, status: :precondition_failed
+      render json: { 'message': @job.errors.full_messages }, status: :precondition_failed
     end
   end
 

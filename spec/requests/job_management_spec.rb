@@ -145,5 +145,30 @@ describe 'Job Management' do
       job.reload
       expect(job.hiring_type_id).not_to eq(nil)  
     end
+
+    it 'fields cannot be blank' do
+      head_hunter = create(:head_hunter, email: 'code@example.com')
+      experience = create(:experience_level, name: 'Júnior')
+      hiring = create(:hiring_type, name: 'CLT')
+      job = create(:job, title: 'Dev Ruby', description: 'Vestibulum ornare non',
+                         skills_description: 'Nulla ac elementum quam.',
+                         salary: 2500.0, experience_level_id: experience.id,
+                         hiring_type_id: hiring.id, address: 'Av. Ruby, nº 263',
+                         registration_end_date: 10.days.from_now,
+                         head_hunter_id: head_hunter.id)
+
+      patch api_v1_job_path(job), params: { job: { title: '', description: '',
+                                                   skills_description: '',
+                                                   salary: '', experience_level_id: '',
+                                                   hiring_type_id: '', head_hunter_id: '',
+                                                   registration_end_date: '' } }
+      json = JSON.parse(response.body, symbolize_names: true)
+
+      expect(response).to have_http_status(:precondition_failed)
+      expect(json[:message]).to include('Titulo da vaga não pode ficar em branco')
+      expect(json[:message]).to include('Descrição da vaga não pode ficar em branco')
+      expect(json[:message]).to include('Nível de experiência não pode ficar em branco')
+      expect(json[:message]).to include('Tipo de contratação não pode ficar em branco') 
+    end
   end
 end
