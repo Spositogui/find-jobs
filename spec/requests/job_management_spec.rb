@@ -157,11 +157,16 @@ describe 'Job Management' do
                          registration_end_date: 10.days.from_now,
                          head_hunter_id: head_hunter.id)
 
-      patch api_v1_job_path(job), params: { job: { title: '', description: '',
-                                                   skills_description: '',
-                                                   salary: '', experience_level_id: '',
-                                                   hiring_type_id: '', head_hunter_id: '',
-                                                   registration_end_date: '' } }
+      patch api_v1_job_path(job), params: { job: {
+                                                    title: '',
+                                                    description: '',
+                                                    skills_description: '',
+                                                    salary: '',
+                                                    experience_level_id: '',
+                                                    hiring_type_id: '',
+                                                    head_hunter_id: '',
+                                                    registration_end_date: ''
+                                                  } }
       json = JSON.parse(response.body, symbolize_names: true)
 
       expect(response).to have_http_status(:precondition_failed)
@@ -169,6 +174,26 @@ describe 'Job Management' do
       expect(json[:message]).to include('Descrição da vaga não pode ficar em branco')
       expect(json[:message]).to include('Nível de experiência não pode ficar em branco')
       expect(json[:message]).to include('Tipo de contratação não pode ficar em branco') 
+    end
+  end
+
+  context 'deletete' do
+    it 'destroy job correctly' do
+      job = create(:job)
+
+      expect{
+        delete api_v1_job_path(job)
+        
+        expect(response).to have_http_status(:ok)
+        expect(response.body).to eq('Vaga deletada com sucesso')
+      }.to change(Job, :count).by(-1)
+    end
+
+    it 'not found' do
+      delete api_v1_job_path(id: 999)
+
+      expect(response).to have_http_status(:not_found)
+      expect(response.body).to eq('Object not found')
     end
   end
 end

@@ -2,6 +2,7 @@ class Api::V1::JobsController < Api::V1::ApiController
   def index
     @jobs = Job.all
     return render json: 'Not implemented', status: :not_implemented unless @jobs.any?
+
     render json: @jobs
   end
 
@@ -44,5 +45,11 @@ class Api::V1::JobsController < Api::V1::ApiController
     else
       render json: { 'message': @job.errors.full_messages }, status: :precondition_failed
     end
+  end
+
+  def destroy
+    job = Job.find(params[:id])
+    job.delete
+    render json: 'Vaga deletada com sucesso'
   end
 end

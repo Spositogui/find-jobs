@@ -1,7 +1,7 @@
 class JobsController < ApplicationController
 	load_and_authorize_resource
-	before_action :authenticate_head_hunter!, only: [:index, :new, :create]
-	before_action :set_job, only: [:show, :subscription, :cofirmed_subscription]
+	before_action :authenticate_head_hunter!, only: %i[index new create]
+	before_action :set_job, only: %i[show subscription cofirmed_subscription close_subscriptions]
 
 	def index
 		@jobs = Job.where('head_hunter_id = ?', current_head_hunter.id)
@@ -29,6 +29,10 @@ class JobsController < ApplicationController
 		end
 	end
 
+	def close_subscriptions
+		@job.inactive!
+		redirect_to @job, notice: 'Inscrições encerradas com sucesso'
+	end
 
 	def cofirmed_subscription
 		@job.subscriptions.build(candidate: current_candidate, 
@@ -55,7 +59,9 @@ class JobsController < ApplicationController
 	end
 
 	def subscription 
-		@subscription = Subscription.new
+		return @subscription = Subscription.new unless @job.inactive?
+		redirect_to root_path, 
+			notice: 'As inscrições para essa vaga foram encerradas'
 	end
 
 	private

@@ -28,6 +28,7 @@
   <% end %>
 <% else %>
   <%= link_to I18n.t('job.view_candidates'), subscribers_job_path(@job) %>
+  <%= button_to 'Encerrar inscrições', close_subscriptions_job_path(@job) if @job.active? %>
  <% end %>
  
 
