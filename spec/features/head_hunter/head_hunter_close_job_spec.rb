@@ -14,13 +14,14 @@ feature 'Headhunter close subscriptions' do
     expect(page).to have_content('Inscrições encerradas com sucesso')
     job.reload
     expect(job.status).to eq('inactive')
-    expect(page).not_to have_link('Encerrar inscrições')  
+    expect(page).not_to have_link('Encerrar inscrições')
   end
 
   scenario 'candidates cant see jobs with subscriptions closed' do
     hunter = create(:head_hunter)
     create(:job, title: 'Dev Ruby', head_hunter: hunter, status: :active)
-    create(:job, title: 'Dev Java', head_hunter: hunter, status: :inactive)
+    create(:job, title: 'Dev Java', head_hunter: hunter,
+                 status: :inactive)
     candidate = create(:candidate)
     create(:candidate_profile, candidate: candidate)
 
@@ -33,7 +34,8 @@ feature 'Headhunter close subscriptions' do
 
   scenario 'candidates cant apply for closed jobs' do
     hunter = create(:head_hunter)
-    job = create(:job, title: 'Dev Ruby', head_hunter: hunter, status: :inactive)
+    job = create(:job, title: 'Dev Ruby', head_hunter: hunter,
+                       status: :inactive)
     candidate = create(:candidate)
     create(:candidate_profile, candidate: candidate)
 
@@ -41,7 +43,28 @@ feature 'Headhunter close subscriptions' do
     visit job_path(job)
     click_on 'Candidatar-me'
 
-    expect(page).to have_content('As inscrições para essa vaga foram encerradas')
+    expect(page).to have_content(
+      'As inscrições para essa vaga foram encerradas'
+    )
     expect(current_path).to eq(root_path)
+  end
+
+  scenario 'headhunter must be logged' do
+    job = create(:job)
+
+    visit job_path(job)
+
+    expect(page).to have_content(
+      'Você não tem autorização para acessar essa página'
+    )
+  end
+
+  scenario 'should exist the job' do
+    hunter = create(:head_hunter)
+
+    login_as hunter, scope: :head_hunter
+    visit job_path(id: 1)
+
+    expect(page).to have_content('Objeto não encontrado')
   end
 end

@@ -1,21 +1,13 @@
 class ApplicationController < ActionController::Base
-
+  rescue_from ActiveRecord::RecordNotFound, with: :object_not_found
   rescue_from CanCan::AccessDenied do |exception|
     respond_to do |format|
       format.html { redirect_to root_path, notice: exception.message }
     end
   end
 
-  def current_ability
-    if head_hunter_signed_in?
-      @current_ability ||= HeadHunterAbility.new(current_head_hunter)
-    else candidate_signed_in?
-      @current_ability ||= CandidateAbility.new(current_candidate)
-    end
-  end
-
-  def after_sign_in_path_for(resource)
-
+  
+  def after_sign_in_path_for(resource) 
     if head_hunter_signed_in?
       stored_location_for(resource) || root_path
     elsif current_candidate.candidate_profile.nil?
@@ -24,5 +16,16 @@ class ApplicationController < ActionController::Base
       stored_location_for(resource) || root_path
     end
   end
+  
+  def current_ability
+    if head_hunter_signed_in?
+      @current_ability ||= HeadHunterAbility.new(current_head_hunter)
+    else candidate_signed_in?
+      @current_ability ||= CandidateAbility.new(current_candidate)
+    end
+  end
 
+  def object_not_found
+    render json: 'Objeto não encontrado', status: :not_found
+  end
 end
