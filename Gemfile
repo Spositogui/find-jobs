@@ -9,7 +9,7 @@ gem 'cancancan'
 gem 'coffee-rails', '~> 4.2'
 gem 'devise'
 gem 'jbuilder', '~> 2.5'
-gem 'puma', '~> 3.11'
+gem 'puma', '~> 4.3'
 gem 'rails', '~> 5.2.3'
 gem 'rubocop-rails', require: false
 gem 'sass-rails', '~> 5.0'
